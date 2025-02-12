@@ -54,6 +54,8 @@ public class PreviewActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.previewToolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         currentTaskId = getIntent().getIntExtra("taskId", -1);
 
         if (currentTaskId != -1) {

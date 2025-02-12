@@ -18,9 +18,6 @@ import java.util.concurrent.Executors;
  */
 public class AddEditActivity extends AppCompatActivity {
 
-    private EditText titleEt, descEt;
-    private Button btn;
-
     private int currentTaskId;
     private Task currentTask;
 
@@ -39,6 +36,10 @@ public class AddEditActivity extends AppCompatActivity {
         binding = ActivityAddEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.addEditToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Get the task ID from the intent
         currentTaskId = getIntent().getIntExtra("taskId", -1);
 
@@ -46,8 +47,10 @@ public class AddEditActivity extends AppCompatActivity {
             loadFromDatabase();
             // Set the button text to "Update Task" if the task ID is valid
             binding.btn.setText("Update Task");
+            binding.addEditToolbar.setTitle("Edit Task");
         } else {
             binding.btn.setText("Add Task");
+            binding.addEditToolbar.setTitle("Add Task");
         }
 
         binding.btn.setOnClickListener(v -> {
